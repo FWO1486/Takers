@@ -1,0 +1,15 @@
+# Takers App
+A junk removal app for customers and freelance drivers.
+
+## Features
+- Customer and driver registration
+- Order creation and pricing calculation
+- Driver assignment and status tracking
+
+## How to Run
+1. Navigate to the `backend` folder and start the Flask server.
+2. Navigate to the `frontend` folder and run the React Native app.
+
+## Requirements
+- Python 3.8+
+- Node.js 16+
