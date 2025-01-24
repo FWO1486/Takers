@@ -2,3 +2,11 @@
 │   ├── App.js
 │   ├── package.json
 │   └── ...
+cd takers-frontend
+git init
+git add .
+git commit -m "Initial commit for frontend"
+git branch -M main
+git remote add origin https://github.com/your-username/takers-frontend.git
+git push -u origin main
+npm run build
