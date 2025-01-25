@@ -1,8 +1,18 @@
-takers/
-├── backend/
-│   ├── app.py
-│   ├── requirements.txt
-│   └── ...
+takers-backend/
+├── config/
+│   └── db.js           # MongoDB connection
+├── models/
+│   ├── Job.js          # Job schema
+│   ├── User.js         # User schema
+├── routes/
+│   ├── drivers.js      # Driver management routes
+│   ├── jobs.js         # Job routes
+│   ├── payments.js     # Payment routes
+│   ├── pricing.js      # Pricing routes
+├── .env                # Environment variables
+├── package.json        # Backend dependencies
+├── server.js           # Main server file
+
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
@@ -11,7 +21,7 @@ const cors = require('cors');
 // Load environment variables
 dotenv.config();
 
-// Initialize the app
+// Initialize app
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -23,12 +33,10 @@ const jobRoutes = require('./routes/jobs');
 const paymentRoutes = require('./routes/payments');
 
 // Database connection
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-  .then(() => console.log('MongoDB Connected'))
-  .catch((err) => console.log(err));
+mongoose
+  .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected'))
+  .catch((err) => console.error('MongoDB connection error:', err));
 
 // Define routes
 app.use('/api/pricing', pricingRoutes);
@@ -39,10 +47,3 @@ app.use('/api/payments', paymentRoutes);
 // Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-cd takers-backend
-git init
-git add .
-git commit -m "Initial commit for backend"
-git branch -M main
-git remote add origin https://github.com/your-username/takers-backend.git
-git push -u origin main
